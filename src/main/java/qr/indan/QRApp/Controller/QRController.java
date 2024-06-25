@@ -73,13 +73,13 @@ public class QRController {
         model.addAttribute("myqr", qrcode);
         model.addAttribute("url", url);
         model.addAttribute("site", site);
-        model.addAttribute("msg","QR Code Saved");
+        model.addAttribute("msg","Saved");
         allQR.setAllQRs(QR_Path);
         model.addAttribute("allQR", allQR.getAllQRs());
 
       } catch(WriterException | IOException e) {
         e.printStackTrace();
-        model.addAttribute("msg","QR Code failed to save");
+        model.addAttribute("msg","Failed");
       }
       return "index";
     }

@@ -22,7 +22,7 @@
     </form>
     
     <main th:if="${myqr != null}"  class="main">
-        <img th:if="${myqr} != null" th:src="'data:image/png;base64,'+${myqr}" alt="My QR" class="QR">
+        <img th:if="${myqr} != null" th:src="'data:image/png;base64,'+${myqr}" alt="My QR" class="QR" th:id="${site}">
         
     <div class="optionber">
             <a th:href="@{${url}}" target="_blank">
@@ -37,19 +37,28 @@
             <button type="submit" class="generate">
                 <img  th:src="@{saveicon.gif}" class="icon" alt="save icon">
                 <p th:if="${msg != null}"><span th:text="${msg}"></span> </p>
-                    <span th:if="${msg == null}">Save QR Code Now</span>
+                    <span th:if="${msg == null}">Save Now</span>
                 </button>
         </form>
+        <button type="button" class="download" th:attr="data-site=${site}" onclick="downloadQR(this.getAttribute('data-site'))">
+            <img th:src="@{download.gif}" class="icon" alt="download icon">
+            <p>Download QR</p>
+        </button>
     </div>
     </main>
-    <img th:unless="${myqr != null}"  th:src="@{app.png}" class="QR" alt="Defalt QR Code">
+    <img th:unless="${myqr != null}"  th:src="@{app.png}" class="QR" id="defalt" alt="Defalt QR Code">
    </div>
 
  <div class="div2" id="div2">
     <div class="showall" th:each="QR : ${allQR}">
         <div class="card">
+
             <h5 th:text="${QR}"></h5>
-            <img class="QR" th:src="@{'/uploads/' + ${QR}+'.png'}" th:alt="${QR}">           
+            <img class="QR" th:src="@{'/uploads/' + ${QR}+'.png'}" th:alt="${QR}" th:id="'qrImage-' + ${QR}"> 
+            <button type="button" class="generate" th:attr="data-image-id='qrImage-' + ${QR}" onclick="downloadQR(this.getAttribute('data-image-id'))">
+                        <img th:src="@{download.gif}" class="icon" alt="download icon">
+                        Download QR
+            </button>      
         </div>
     </div>
   </div>

@@ -143,7 +143,6 @@ nav a {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s, font-size 0.3s;
-    
 }
 
  .generate:hover  {
@@ -185,12 +184,42 @@ nav a {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transition: background 0.3s, box-shadow 0.3s, font-style 0.1s;
 }
- .icon {
-   height: 100%;
-   background-size: cover;
-   background-position: center;
-   margin-right: 5px;   
+.download {
+    background-color: transparent;
+    border: none;
+    padding-top: 8px;
+}
+.download p {
+    content-visibility: hidden;
+    display: none;
+}
 
+.download img {
+    width: 50px;
+    height: 50px;
+    padding-top: 5px;
+    border-radius: 10px;
+    background-color: #243949;
+    transition: transform 0.3s, scale 0.3s;
+}
+
+.download img:hover {
+  scale: 1.12;
+  transition: transform 0.3s, scale 0.3s;
+}
+ .icon {
+    width: 50px;
+    height: 50px;
+    padding-top: 5px;
+    margin-right: 15px;
+    border-radius: 10px;
+    background-color: #243949;
+    transition: transform 0.3s, scale 0.3s;
+
+}
+.icon:hover {
+    scale: 1.12;
+    transition: transform 0.3s, scale 0.3s;
 }
 
 .main  {
@@ -205,6 +234,9 @@ nav a {
     border-radius: 10px;
     margin-bottom: 30px;
     background-size: cover;
+}
+#defalt {
+    margin-left: 10%;
 }
 a {
     text-decoration: none;
@@ -307,6 +339,38 @@ a {
     
     .inputurl::placeholder {    
         font-size: 1rem;
+    }
+    .download {
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        width: 90%;
+        height: 65px;
+        padding: 10px ;
+        margin: 15px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: relative; 
+        color: white;
+        background: linear-gradient(-225deg, #FF057C 0%, #7C64D5 48%, #4CC3FF 100%); 
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s, box-shadow 0.3s, font-size 0.3s;
+    }
+    .download:hover {
+        background: linear-gradient(-225deg, #FF057C 0%, #4CC3FF 48%, #7C64D5 100%);
+        font-size: 1.5rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: background 0.3s, box-shadow 0.3s, font-size 0.3s;
+    }
+    .download p {
+        content-visibility: visible;
+        display: block;
+    }
+    #defalt {
+        margin-left: 1%;
     }
     
 }

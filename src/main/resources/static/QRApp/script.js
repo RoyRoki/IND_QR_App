@@ -89,3 +89,17 @@ if (window.innerWidth >= 768) {
     document.getElementById('div1').style.display = 'block';
     document.getElementById('div2').style.display = 'none';
 }
+
+function downloadQR(imageId) {
+    var qrImage = document.getElementById(imageId);
+    if (qrImage) {
+        var link = document.createElement('a');
+        link.href = qrImage.src;
+        link.download = qrImage.id.replace("qrImage-","")+'-QRApp'+'.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } else {
+        console.error('QR image not found with id:', imageId);
+    }
+}
