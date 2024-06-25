@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{style.css}">
+    <title>IND QR Generator</title>
+</head>
+<body>
+    <script src="script.js"></script>
+    <nav>
+        <a href="javascript:void(0)" class="qrgeneretor" onclick="showDiv('genQR')"><div class="genQR">Generate QR Code</div></a>
+        <a href="javascript:void(0)" class="allqrcodes" onclick="showDiv('savedQR')"><div class="savedQR">Saved QR Codes</div></a>
+    </nav>
+
+   
+<div class="hero">
+  <div class="div1" id="div1">
+    <form th:action="@{/QRApp/generateQRCode}" method="post" class="qr-form">
+        <input type="text" name="url" id="url" class="inputurl" placeholder="Enter Any Link To Generate QR Code" required>
+        <button type="submit" class="generate"> <img  th:src="@{webicon.gif}" class="icon" alt="open website icon">Generate QR Code</button>
+    </form>
+    
+    <main th:if="${myqr != null}"  class="main">
+        <img th:if="${myqr} != null" th:src="'data:image/png;base64,'+${myqr}" alt="My QR" class="QR">
+        
+    <div class="optionber">
+            <a th:href="@{${url}}" target="_blank">
+                <div class="openwebsite">
+                    <img  th:src="@{webicon.gif}" class="icon" alt="open website icon">
+                    <span th:text="${#strings.toUpperCase(site)}"></span>
+                </div>
+            </a>
+
+        <form th:action="@{/QRApp/saveQRCode}" method="post" class="saveform">
+            <input type="text" hidden th:value="${url}" name="url">
+            <button type="submit" class="generate">
+                <img  th:src="@{saveicon.gif}" class="icon" alt="save icon">
+                <p th:if="${msg != null}"><span th:text="${msg}"></span> </p>
+                    <span th:if="${msg == null}">Save QR Code Now</span>
+                </button>
+        </form>
+    </div>
+    </main>
+    <img th:unless="${myqr != null}"  th:src="@{app.png}" class="QR" alt="Defalt QR Code">
+   </div>
+
+ <div class="div2" id="div2">
+    <div class="showall" th:each="QR : ${allQR}">
+        <div class="card">
+            <h5 th:text="${QR}"></h5>
+            <img class="QR" th:src="@{'/uploads/' + ${QR}+'.png'}" th:alt="${QR}">           
+        </div>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>IND QR Generator</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Java Spring Boot</h3>
+            <p>Spring Boot is an open-source framework for creating stand-alone, production-grade Spring-based applications. It is designed to simplify the development process and provides a robust platform for building Java applications.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Thymeleaf</h3>
+            <p>Thymeleaf is a modern server-side Java template engine for web and standalone environments. It is designed to process and generate HTML, XML, JavaScript, CSS, and text, and provides a natural template syntax that is straightforward to use.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Google ZXing</h3>
+            <p>ZXing ("Zebra Crossing") is an open-source, multi-format 1D/2D barcode image processing library implemented in Java. It is widely used for QR code generation and scanning.</p>
+        </div>
+        <div class="footer-section">
+            <h3>QR Code Generator</h3>
+            <p>QR codes are a type of matrix barcode that can store data such as URLs, text, or other information. Using Google ZXing with Java and Thymeleaf, you can easily generate and display QR codes in your web applications.</p>
+        </div>
+
+    </div>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>🚀 Excited to share my latest project! 🎉</h3>
+            <h5>I’ve built a QR Code Generator App using Java Spring Boot, Thymeleaf, and Google ZXing. 📱✨</h5>
+        </div>
+        <div class="footer-section">
+            <h3>🔍 Features:</h3>
+            <p>Generate QR codes for any URL or text.</p>
+            <p>Save and manage your generated QR codes effortlessly.</p>
+            <p>Responsive design for both mobile and desktop screens.</p>
+        </div>
+        <div class="footer-section">
+            <h3>👨‍💻 Tech Stack:</h3>
+            <p><strong>Java Spring Boot:</strong> Robust backend framework for creating RESTful APIs.</p>
+            <p><strong>Thymeleaf:</strong> Powerful template engine for rendering dynamic web pages.</p>
+            <p><strong>Google ZXing:</strong> Reliable library for generating QR codes.</p>
+        </div>
+        <div class="footer-section">
+            <h3>📈 Project Highlights:</h3>
+            <p>Whether you need a QR code for your business card, event ticket, or just for fun, this app has got you covered. Check it out and let me know what you think!</p>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>
